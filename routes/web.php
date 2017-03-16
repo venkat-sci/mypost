@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/createpost', 'PostController@view')->name('createpost');
-Route::post('/createpost', 'PostController@store')->name('createpost');
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('/home', 'HomeController@index');
+	Route::get('/createpost', 'PostController@view')->name('createpost');
+	Route::post('/createpost', 'PostController@store')->name('createpost');
+});
+
 Route::get('/posts', 'PostController@index')->name('posts');
+Route::get('/', 'PostController@index')->name('posts');
+// to see single post in the page
+Route::get('/post/{id}', 'PostController@show')->name('showpost');
+// user view to see info about post users and his related posts
+Route::get('/user/{id}', 'UserController@view')->name('userview');
