@@ -6,8 +6,8 @@
         <div class="col-lg-8 col-md-8 col-md-offset-2">
 
                 @IF($posts)
-                @foreach($posts as $post)
-                <h1><a href="{{ url('post/'.$post->id)}}">{{$post->title}}</a></h1>
+                @foreach($posts as $key => $post)
+                <h1>{{$post->id}}.<a href="{{ url('post/'.$post->id)}}">{{$post->title}}</a></h1>
                 <p class="lead">
                 by <a href="{{ url('user/'.$post->user->id)}}">{{$post->user->name}}</a>
                 <span class="glyphicon glyphicon-time"></span> {{$post->created_at->diffForHumans()}}
