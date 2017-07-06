@@ -7,14 +7,16 @@
 
                 @IF($posts)
                 @foreach($posts as $key => $post)
-                <h1>{{$post->id}}.<a href="{{ url('post/'.$post->id)}}">{{$post->title}}</a></h1>
-                <p class="lead">
-                by <a href="{{ url('user/'.$post->user->id)}}">{{$post->user->name}}</a>
-                <span class="glyphicon glyphicon-time"></span> {{$post->created_at->diffForHumans()}}
-                </p>
-                <p class="lead">
-                {{$post->body}}
-                </p>
+                <div class="postcontainer">
+                  <h1>{{$post->id}}.<a href="{{ url('post/'.$post->id)}}">{{$post->title}}</a></h1>
+                  <p class="lead pinfo">
+                  by <a href="{{ url('user/'.$post->user->id)}}">{{$post->user->name}}</a>
+                  <span class="glyphicon glyphicon-time"></span> {{$post->created_at->diffForHumans()}}
+                  </p>
+                  <p class="lead pbody">
+                  {{$post->body}}
+                  </p>
+                </div>
                 @endforeach
                 {{ $posts->links() }}
                 @ELSE

@@ -15,11 +15,11 @@ class PostController extends Controller
 	  //  $this->middleware('auth');
 	}
 	public function index(){
-		$posts = Post::Paginate(10);
-		return view('posts.posts',compact('posts'));
+		$posts = Post::latest()->Paginate(10);
+    return view('posts.posts',compact('posts'));
 	}
 	public function view(){
-    	return view('posts.create_post');		
+    return view('posts.create_post');
 	}
 	// show single post
 	public function show($id = null){
@@ -37,7 +37,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->user()->associate(Auth::user());
         $post->save();
-       
+
     	return redirect('posts');
     }
 }
