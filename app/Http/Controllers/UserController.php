@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 class UserController extends Controller
 {
     //
     public function __construct(){
 
     }
-    // view of the perticluer user 
+    // view of the perticluer user
     public function view($id = null){
     	if($id){
     		$user = User::find($id);
@@ -21,6 +22,10 @@ class UserController extends Controller
     }
     public function profile(){
 
+    }
+    public function editprofile(){
+      $user = User::find(Auth::user());
+      return view('user.editprofile',compact('user'));
     }
 
 }

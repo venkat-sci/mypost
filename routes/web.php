@@ -17,6 +17,8 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/home', 'HomeController@index');
 	Route::get('/createpost', 'PostController@view')->name('createpost');
 	Route::post('/createpost', 'PostController@store')->name('createpost');
+	Route::get('/editprofile', 'UserController@editprofile')->name('editprofile');
+
 });
 
 Route::get('/posts', 'PostController@index')->name('posts');
